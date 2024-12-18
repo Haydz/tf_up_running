@@ -26,7 +26,26 @@
 
 provider "aws" {
   region = "us-east-1"
+  
 }
+
+variable "secret_id" {
+  type = string
+  description = "Secret ID of the database credentials"
+}
+
+data  "aws_secretsmanager_secret_version" "example" {
+  secret_id     = var.secret_id
+}
+
+
+locals {
+    db_creds = jsondecode(data.aws_secretsmanager_secret_version.example.secret_string)
+}
+
+
+
+
 
 resource "aws_db_instance" "example" {
   identifier_prefix   = "terraform-up-and-running"
@@ -38,7 +57,7 @@ resource "aws_db_instance" "example" {
   # Since for testing the creds are being created at database time
   # need a way to give different enviornment creds (prod / stag)
   # a module can be created and used by the root modules!
-  username            = local.db_creds.username
-  password            = local.db_creds.password
+  username            = local.db_creds["username"]
+  password            = local.db_creds["password"]
   skip_final_snapshot = true
 }

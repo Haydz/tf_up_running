@@ -22,10 +22,16 @@ terraform {
   
 }
 
+module "secrets" {
+  source = "../../../modules/secrets"
+  db_username = var.db_username
+  db_password = var.db_password
+}
+
 module "mysql" {
-    db_username = var.db_username
-    db_password = var.db_password
+    source = "../../../modules/services/datastore/mysql"
     db_name = local.db_name
-     source = "../../../modules/services/datastore/mysql"
+    secret_id = module.secrets.secret_id
+     
   
 }
