@@ -1,5 +1,5 @@
 locals {
-  cert_arn = "arn:aws:acm:us-east-1:008963853103:certificate/2991b26d-7ad1-4a45-b1af-1e9c9a3400c6"
+  cert_arn = "arn:aws:acm:us-east-1:xxx:certificate/2991b26d-7ad1-4a45-b1af-1e9c9a3400c6"
 
 }
 
@@ -8,7 +8,7 @@ provider "aws" {
 }
 
 data "aws_vpc" "selected" {
-  id = "vpc-d57d71b0"
+  id = "xx"
 }
 
 module "instance" {
@@ -76,7 +76,7 @@ resource "aws_lb" "test" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [module.instance.sg_id]
-  subnets            = ["subnet-e840dbc3", "subnet-8efda1f9"]
+  subnets            = ["xxxx", "xxx"]
 
   enable_deletion_protection = false
 

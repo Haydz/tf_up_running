@@ -25,5 +25,9 @@
 variable "db_name" {
   description = "The name to use for the database"
   type        = string
-  default     = "example_database_stage"
+  default     = "database"
+}
+
+variable environment {
+  type = string
 }

@@ -60,4 +60,26 @@ resource "aws_db_instance" "example" {
   username            = local.db_creds["username"]
   password            = local.db_creds["password"]
   skip_final_snapshot = true
+  tags = {
+    Environment = var.environment
+  }
+  lifecycle  {
+    postcondition {
+      condition =  length(self.tags) > 0 && contains(keys(self.tags), "Environment")
+      error_message = "DB instance is missing tags"
+    }
+
+  }
 }
+
+# data "aws_db_instance" "example" {
+#    db_instance_identifier = var.db_name
+#   lifecycle  {
+#     postcondition {
+#       condition =  length(self.tags) > 0 && contains(keys(self.tags), "Enviornment")
+#       error_message = "DB instance is missing tags"
+#     }
+
+#   }
+
+# }

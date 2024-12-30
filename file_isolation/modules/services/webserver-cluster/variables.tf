@@ -75,7 +75,7 @@ variable "custom_tags" {
 variable "server_text" {
   description = "The text the web server should return"
   type = string
-  default = "Hello, WOrdd!"
+  default = "Hello, World!"
 }
 
 

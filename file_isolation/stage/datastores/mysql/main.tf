@@ -1,5 +1,5 @@
 locals {
-  db_name = "staging_db"
+  db_name = "staging-db"
 }
 
 terraform {
@@ -32,6 +32,7 @@ module "mysql" {
     source = "../../../modules/services/datastore/mysql"
     db_name = local.db_name
     secret_id = module.secrets.secret_id
+    environment = "staging"
      
   
 }
