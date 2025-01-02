@@ -57,8 +57,8 @@ owners = ["099720109477"] # Canonical
 }
 
 
-output "intance_security_group_id" {
-    value = module.asg.intance_security_group_id
+output "instance_security_group_id" {
+    value = module.asg.instance_security_group_id
     description = "The name of the Auto Scaling Group"
 }
 

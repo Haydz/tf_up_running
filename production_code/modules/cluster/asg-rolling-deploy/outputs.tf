@@ -4,7 +4,7 @@ output "asg_name" {
 
 }
 
-output "intance_security_group_id" {
+output "instance_security_group_id" {
     value = aws_security_group.instance.id
     description = "The name of the Auto Scaling Group"
 }
